@@ -30,7 +30,7 @@ class BlogPostCategoryView(APIView):
 
     def post(self, request, format=None):
         category = request.data.get('category')
-        queryset = BlogPost.objects.order_by('-created_at').filter(category__iexact=category)
+        queryset = BlogPost.objects.order_by('-created_at').filter(category=category)
 
         serializer = BlogPostSerializer(queryset, many=True)
         return Response(serializer.data)
